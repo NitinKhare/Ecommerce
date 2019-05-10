@@ -1,0 +1,32 @@
+<% include adminheader.ejs %>
+ 
+<h2>Create Page</h2>
+<br>
+
+<form action="/admin/pages/create" method="POST">
+    <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Enter the title" value="<%= title %>">
+    </div>
+    <div class="form-group">
+            <label for="">Slug</label>
+            <input type="text" class="form-control" placeholder="Enter the desired URL"name="slug" value="<%= slug %>">
+        </div>
+        <div class="form-group">
+                <label for="">Content</label>
+                <textarea type="text"  class="form-control" name="content" cols="40" rows="10" value="<%= content %>" placeholder="Enter the Content"></textarea>
+            </div>
+            <div class="form-group">
+            <a class="btn btn-link float-right" href="/admin/pages">All Pages</a><br>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-success float-right">Create</button>
+        </div>
+</form>
+
+
+
+    
+
+<% include adminfooter.ejs %>

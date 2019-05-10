@@ -1,3 +1,4 @@
 #Not Tracking these files
 
 node_modules/
+config/secretKey.js
