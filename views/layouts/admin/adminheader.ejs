@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
     <title><%= header %></title>
 </head>
 
@@ -28,8 +32,8 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
-                    </li>
+                    <a class="nav-link" href="#">Products</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/pages">Pages</a>
                 </li>
@@ -43,19 +47,19 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Log-In <span class="sr-only">(current)</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Log-In <span class="sr-only">(current)</span></a>
+                </li>
             </ul>
         </div>
     </nav>
     <div class="container">
-            <%- messages('messages', locals) %>
+        <%- messages('messages', locals) %>
 
-            <% if(errors) {%>
-                <% errors.forEach(function(error){ %>
-                    <div class="alert-danger">
-                        <%= error.msg %>
-                    </div>
-                    <% }); %>
-            <% } %>
+        <% if(errors) {%>
+        <% errors.forEach(function(error){ %>
+        <div class="alert-danger">
+            <%= error.msg %>
+        </div>
+        <% }); %>
+        <% } %>

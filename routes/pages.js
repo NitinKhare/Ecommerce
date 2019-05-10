@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+
+
 router.get('/',(req, res)=>{
     res.render('index',{
         header:'index'
@@ -8,5 +10,4 @@ router.get('/',(req, res)=>{
 });
 
 
-
-module.exports = router
+module.exports = router;
