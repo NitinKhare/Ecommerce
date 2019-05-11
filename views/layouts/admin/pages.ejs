@@ -1,9 +1,10 @@
 <% include adminheader.ejs %>
 <div class="container">
  <h2 class="page-title">Pages</h2>
-
- <a href="/admin/pages/create" class="btn btn-primary">Add Pages</a>
+<hr>
+ <h3><a href="/admin/pages/create" class="btn btn-primary">Add Pages</a></h3>
 <link rel="stylesheet" href="/styles/showPagesTable.css">
+<h6 class="text-muted ">The Delete Action is not reversible</h6>
  <table class="table table-striped">
     <thead>
         <tr>
@@ -16,9 +17,12 @@
     <% pages.forEach(function(page){ %>
         <% if(page.slug != "home"){%>
     <tbody>
-            <td><a href="" class="btn btn-default"><%= page.title %></a></td>
+            <td><a href="" class="btn btn-default"> <%= page.title %></a></td>
+
             <td><%= page.dateCreated %></td>
+
             <td><form action="/admin/pages/delete/<%= page._id %>?_method=DELETE" method="POST"><button class = "btn" type="submit"><i class="fa fa-trash-o" aria-hidden="true"> Delete</i></button></form></td>
+            
             <td><a href="/admin/pages/edit/<%= page._id %>" class="btn"><i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a></td>
            
     </tbody>

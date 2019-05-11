@@ -5,7 +5,8 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var database = require('./config/database')
 var expressValidator = require('express-validator');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
+var fileUpload = require('express-fileupload');
 
 
 
@@ -50,12 +51,17 @@ app.use(require('connect-flash')());
     next();
   });
 
+app.use(fileUpload());
 
 //Set routes
 var pages = require('./routes/pages');
 var admin = require('./routes/admin');
+var category = require('./routes/categories');
+var product = require('./routes/product');
 
 
+app.use('/products-admin', product);
+app.use('/product-categories', category);
 app.use('/admin', admin);
 app.use('/', pages);
 

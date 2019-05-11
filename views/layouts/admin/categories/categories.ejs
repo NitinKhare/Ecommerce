@@ -1,0 +1,43 @@
+<% include ../adminheader.ejs %>
+
+<link rel="stylesheet" href="/styles/showPagesTable.css">
+<div class="container">
+    <h2 class="page-title">Categories</h2>
+    <hr>
+    <h3><a href="/product-categories/create" class="btn btn-primary">Add Categories</a></h3>
+    <link rel="stylesheet" href="/styles/showPagesTable.css">
+    <h6 class="text-muted ">The Delete Action is not reversible</h6>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Edit Category</th>
+                <th>Delete Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% Category.forEach(function(category){ %>
+            <tr>
+                <td><a href="" class="btn btn-default"><%= category.title %></a></td>
+
+            
+
+                <td><a href="/product-categories/edit/<%= category._id %>" class="btn"><i class="fa fa-pencil-square-o"
+                            aria-hidden="true">Edit</i></a></td> 
+                           
+                <td>
+                    <form action="/product-categories/delete/<%= category._id %>?_method=DELETE" method="POST"><button
+                        class="btn btn-default" type="submit"><i class="fa fa-trash-o" aria-hidden="true">Delete</i></button>
+                    </form>
+                </td>
+
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+
+
+<% include ../adminfooter.ejs %>

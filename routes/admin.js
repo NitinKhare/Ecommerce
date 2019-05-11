@@ -90,8 +90,7 @@ router.post('/pages/create',(req, res)=>{
 
 
 router.get('/pages/edit/:id',(req, res)=>{
-    var id = req.params.id;
-    Page.findOne({_id: id}, (err, page)=>{
+    Page.findById( req.params.id, (err, page)=>{
     res.render('layouts/admin/edit_page', {
         id: page._id,
         header: 'Edit Page',
@@ -103,8 +102,8 @@ router.get('/pages/edit/:id',(req, res)=>{
 });
 
 router.post('/pages/edit/:id',(req, res)=>{
-    var id = req.params.id;
-    req.checkBody('title', 'Enter a Title').notEmpty();
+ var id = req.params.id;
+   req.checkBody('title', 'Enter a Title').notEmpty();
   req.checkBody('content', 'Content Must have some value').notEmpty();
 
   var title = req.body.title;
@@ -159,6 +158,7 @@ router.delete('/pages/delete/:id', (req, res)=>{
         if(err){
             throw err;
         }else{
+            req.flash('success', 'Page deleted');
             res.redirect('/admin/pages');
         }
     });
