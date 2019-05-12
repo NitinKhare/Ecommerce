@@ -43,7 +43,23 @@ app.use(session({
 
 app.use(methodOverride('_method'))
 
-app.use(expressValidator())
+app.use(expressValidator({
+  customValidators: {
+      isImage: function(value, filename) {
+  
+          var extension = (path.extname(filename)).toLowerCase();
+          switch (extension) {
+              case '.jpg':
+                  return '.jpg';
+              case '.jpeg':
+                  return '.jpeg';
+              case  '.png':
+                  return '.png';
+              default:
+                  return false;
+          }
+      }
+  }}));
 //express-messages middleware
 app.use(require('connect-flash')());
     app.use(function (req, res, next) {
@@ -60,7 +76,7 @@ var category = require('./routes/categories');
 var product = require('./routes/product');
 
 
-app.use('/products-admin', product);
+app.use('/admin-products', product);
 app.use('/product-categories', category);
 app.use('/admin', admin);
 app.use('/', pages);
