@@ -9,6 +9,20 @@ var methodOverride = require('method-override');
 var fileUpload = require('express-fileupload');
 
 
+var Pages = require('./models/page');
+var Category = require('./models/category');
+
+Category.find({}).sort({sorting: 1}).exec((err, categories)=>{
+   if(err) {console.log(err);}
+   else{ app.locals.Categories = categories;}
+
+});
+
+Pages.find({},(err, pages)=>{
+    if(err) {console.log(err);}
+    else{ app.locals.pages = pages;}
+ 
+ });
 
 //mongo setup
 mongoose.connect(database.database, { useNewUrlParser: true });
@@ -74,11 +88,12 @@ var pages = require('./routes/pages');
 var admin = require('./routes/admin');
 var category = require('./routes/categories');
 var product = require('./routes/product');
-
+var userPages = require('./routes/userMadePages');
 
 app.use('/admin-products', product);
 app.use('/product-categories', category);
 app.use('/admin', admin);
+app.use('/pages', userPages);
 app.use('/', pages);
 
 

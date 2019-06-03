@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">E-Commerce</a>
+        <a class="navbar-brand" href="/">E-Commerce</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,15 +23,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                    <%  pages.forEach(function(page){%>
+                    <% if(page.title != 'Home') {%>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/pages/<%= page.slug %>"><%= page.title %><span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+                <% } %>
+                <% }); %>
 
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
@@ -47,3 +45,24 @@
     </nav>
     <div class="container">
             <%- messages('messages', locals) %>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-3">
+                    <h4>Categories</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="/products">All Products</a>
+                        </li>
+                        <% Categories.forEach(function(cat){%>
+                            
+                            <li class="list-group-item"><a href="/products/<%= cat.slug %>"><%= cat.title %></a>
+                                </li>
+                            <% }); %>
+                    </ul>
+                </div>
+                <div class="col-sx-12">
+
+                </div>
+                <div class="col-xs-12 col-md-8">
+
+  
