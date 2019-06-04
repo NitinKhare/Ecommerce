@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
     <title><%= header %></title>
 </head>
@@ -32,19 +34,53 @@
                 <% }); %>
 
             </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-link">
+                    <a href="/cart/checkout">My Cart(
+                        <% if(typeof cart !== "undefined"){ %>
+                            <%= cart.length %>
+                    <% } else{ %>
+                        0
+                        <% } %>
+                    
+                    )</a>
+                </li>
+                <% if(user){ %>
+                    <li><a class="nav-link" href="/user/logout"><%= user.name %>(Logout)</a></li>
+                    <% } else {%>
+                <li><a class="nav-link" href="/user/Register">Register</a></li>
+               
+            </ul>
+            <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/user/login">Log-In <span class="sr-only">(current)</span></a>
+                    </li>
+                    </ul>
+                   
+            <% } %>
+            <% if (user && user.admin == 1) { %>
+                <li><a class="nav-link" href="/admin/pages">Admin Area</a></li>
+                <% }%>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Log-In <span class="sr-only">(current)</span></a>
-            </li>
-            </ul>
+           
+            
+          
+        
         </div>
     </nav>
     <div class="container">
             <%- messages('messages', locals) %>
+
+            <% if(errors) {%>
+            <% errors.forEach(function(error){ %>
+            <div class="alert-danger">
+                <%= error.msg %>
+            </div>
+            <% }); %>
+            <% } %>
 
             <div class="row">
                 <div class="col-xs-12 col-md-3">
@@ -64,5 +100,6 @@
 
                 </div>
                 <div class="col-xs-12 col-md-8">
+                    
 
   

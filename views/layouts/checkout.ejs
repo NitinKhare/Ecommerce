@@ -1,0 +1,74 @@
+<% include header.ejs %>
+<link rel="stylesheet" href="/styles/styles.css">
+
+<% if(typeof cart != 'undefined'){ %>
+    <br>
+    <h2>My Cart </h2>
+    <br>
+    <table class="table table-striped">
+         <tr>
+             <th>Image</th>
+             <th>Title</th>
+             <th>Price</th>
+             <th>Quantity</th>
+             <th></th>
+             <th>Subtotal</th>
+         </tr> 
+            <% var total = 0; %>
+            <% cart.forEach((product)=>{ %>
+                <% var subtotal = product.qty * product.price %>
+                <% total += subtotal %>
+                <tr>
+                    <td><img class= "cpi" src="<%= product.image %>"></td>
+                    <td><%= product.title %></td>
+                    <td>&#8377;<%= product.price %></td>
+                    <td><%= product.qty %></td>
+                    <td>
+                        <a href="/cart/update/<%= product.title %>?action=add">+</a>
+                        <a href="/cart/update/<%= product.title %>?action=remove">-</a>
+                        <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>
+                    </td>
+                    <td>&#8377;<%= subtotal %></td>
+
+                </tr>
+                
+            <% }); %>
+            <tr>
+                    <td colspan="7" align="right"><strong>TOTAL : </strong> &#8377;<%= total%></td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="right">
+                        <a class="btn btn-danger" href="/cart/clear">Clear Cart</a>
+                    </td>
+                    <td colspan="5" align="right">
+                            <a class="btn btn-success" href="#">Buy</a>
+                        </td>
+                </tr>
+
+    </table>
+
+<form class = "paypal" action="https://www.sandbox.paypal.com/us/cgi-bin/webscr" method="post">
+   <input type="hidden" name="cmd" value="_cart">
+   <input type="hidden" name="upload" value="1">
+   <input type="hidden" name="business" value="Add your paypal sandbox email account">
+   
+   <% var num = 0;%>
+   <% cart.forEach((product)=>{ %>
+    <% num++ %>
+    <input type="hidden" name="item_name_<%= num %>" value="<%= product.title %>">
+    <input type="hidden" name="amount_<%= num %>" value="<%= product.price %>">
+    <input type="hidden" name="quantity_<%= num %>" value="<%= product.qty %>">
+    <% }); %>
+   <input type="hidden" name="item_name" value="Item Name">
+   <input type="hidden" name="currency_code" value="INR">
+   <input type="hidden" name="amount" value="<%= total %>">
+   <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but01.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+</form>
+
+<% } else{ %>
+    <h3 class="text-center"> ENTER ITEMS IN CART TO CHECKOUT</h3>
+<% } %>
+
+
+
+<% include footer.ejs %>

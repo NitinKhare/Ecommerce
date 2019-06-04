@@ -1,0 +1,17 @@
+<% include header.ejs %>
+<link rel="stylesheet" href="/styles/styles.css">
+<div class="row row-products">
+    <% products.forEach(function(product){%>
+        <div class="col-xs-12 col-md-4 p">
+           <a href="/products/<%= product.category %>/<%= product.slug %>" class = "product">
+            <img src="/product_images/<%= product._id %>/<%= product.image %>" alt="<%= product.title %>" class="product-image">
+        
+        </a> 
+        <h3><%= product.title %></h3>
+        <h4> &#x20b9; <%= product.price %></h4>
+        <a href="/products/<%= product.category %>/<%= product.slug %>" class="vd">View Details</a>
+        </div>
+        <% }); %>
+</div>
+
+<% include footer.ejs %>

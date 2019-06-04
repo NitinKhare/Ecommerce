@@ -4,9 +4,7 @@ var Page = require('../models/page');
 
 
 router.get('/',(req, res)=>{
-    res.render('index',{
-        header:'index'
-    });
+    res.redirect('/products')
 });
 
 

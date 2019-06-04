@@ -1,3 +1,25 @@
 #imgPreview{
     margin: 25px;
 }
+
+img.product-image {
+    width: 150px;
+
+}
+
+a.product {
+    display: inline-block;
+    height: 160px;
+}
+
+.row.products .p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+img.spi {
+    width: 100%;
+}
+img.cpi{
+    width: 150px;
+}
